@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: notification-service
+
+notification:
+  channels:
+    - email:
+        subject: Order Notification
+        to: abc.def@gmail.com
+        body: Your order is being dispatched.
+        host: http://email.server.com/
+    - sms:
+        body: Your oder is being dispatched.
+        to: +91 1234567890
+        host: https://sms.server.com/
+    - slack:
+      subject: Order Notification
+      to: slack_notify
+      body: Your order is being dispatched.
+      host: https://slack.com/channel

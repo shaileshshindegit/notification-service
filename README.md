@@ -13,6 +13,8 @@
 * **Scalability & High Availability** : Achieved by running multiple instances of notification service
 * **Performance** : Achieved by processing notification asynchronously. 
 * **Resiliency** : Not implemented in code for simplicity but using retry mechanism we can make service resilient & fault-tolerant.
+* **Data Storage** : Data loss possible. Data storage requirement not consider for simplicity. Refer alternate Kafka based solution if we need to store data for short duration (few days).
+
 
 <img alt="screenshot" height="350" src="architecture.png" width="590"/>
 
@@ -75,10 +77,20 @@ curl --location 'http://localhost:8080/api/v1/notification' \
 <br/>
 
 ### Leftover
-* Exception handling and system failures are not implemented for simplicity.
+* Exception handling and partial failures are not implemented for simplicity.
 * Extensive tests cases are not written as no business logic in code. Focus was more on design side.
 * Process multiple notifications in single request is not implemented for simplicity.
 
+<br/>
+
+
+### Notification Service Alternate Architecture - Kafka Based
+
+* **Data Storage** : By default data persisted in kafka for 7 days.
+
+<img alt="Kafka Based Architecture" height="350" src="kafka_based_arch.png" width="690"/>
+
+<br/>
 <br/>
 
 ### Author

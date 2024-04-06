@@ -2,16 +2,19 @@
 
 # Description
 
-* Notification service is build to handle to order notification and delivered the notification messages the various channels.
-* Email, SMS and Slack channels are supported to deliver the notification.
+* Notification service is build to handle order notifications
+* Service delivers notification messages the various channels.
+* Email, SMS and Slack channels are supported
 * API service is easily extendable to support new channel to send notifications.
-* 
 
 <br/>
 
 ### Notification Service Architecture
+* **Scalability & High Availability** : Achieved by running multiple instances of notification service
+* **Performance** : Achieved by processing notification asynchronously. 
+* **Resiliency** : Not implemented in code for simplicity but using retry mechanism we can make service resilient & fault-tolerant.
 
-<img alt="screenshot" height="350" src="architecture.png" width="500"/>
+<img alt="screenshot" height="350" src="architecture.png" width="590"/>
 
 <br/>
 <br/>
@@ -46,11 +49,11 @@ Execute following command to run test cases
 ### Sample Log Statements
 
 ```
-2024-04-06T20:52:33.323+11:00  INFO 15684 --- [    Test worker] c.e.n.controller.NotificationController  : Received notification request for order Id : 12999922
-2024-04-06T20:52:33.330+11:00  INFO 15684 --- [    Test worker] c.e.n.i.impl.EmailNotificationClient     : Email notification sent for Order ID : 12999922 and notification ID : 23e6066b-9f43-4f1b-8b26-1eba580f6f95
-2024-04-06T20:52:33.331+11:00  INFO 15684 --- [    Test worker] c.e.n.i.impl.SlackNotificationClient     : Slack notification sent for Order ID : 12999922 and notification ID : 23e6066b-9f43-4f1b-8b26-1eba580f6f95
-2024-04-06T20:52:33.332+11:00  INFO 15684 --- [    Test worker] c.e.n.i.impl.SmsNotificationClient       : SMS notification sent for Order ID : 12999922 and notification ID : 23e6066b-9f43-4f1b-8b26-1eba580f6f95
-2024-04-06T20:52:33.333+11:00  INFO 15684 --- [    Test worker] c.e.n.controller.NotificationController  : Notification request processed for order Id : 12999922
+2024-04-06T22:30:03.053+11:00  INFO 8772 --- [    Test worker] c.e.n.controller.NotificationController  : Received notification request : ServiceNotificationRequest(orderId=12999922, customer=ABC Enterprises, email=abc@xyz.com, mobile=999991234, message=Your order has been dispatched)
+2024-04-06T22:30:03.064+11:00  INFO 8772 --- [    Test worker] c.e.n.controller.NotificationController  : Sent Notification response : ServiceNotificationResponse(notificationId=a4fd910e-e939-4eb7-802e-145821b9e465, orderId=12999922)
+2024-04-06T22:30:03.069+11:00  INFO 8772 --- [         task-1] c.e.n.i.impl.EmailNotificationClient     : Email notification sent for Order ID : 12999922 and notification ID : a4fd910e-e939-4eb7-802e-145821b9e465
+2024-04-06T22:30:03.070+11:00  INFO 8772 --- [         task-1] c.e.n.i.impl.SlackNotificationClient     : Slack notification sent for Order ID : 12999922 and notification ID : a4fd910e-e939-4eb7-802e-145821b9e465
+2024-04-06T22:30:03.071+11:00  INFO 8772 --- [         task-1] c.e.n.i.impl.SmsNotificationClient       : SMS notification sent for Order ID : 12999922 and notification ID : a4fd910e-e939-4eb7-802e-145821b9e465
 
 ```
 
@@ -68,6 +71,13 @@ curl --location 'http://localhost:8080/api/v1/notification' \
 "message": "Your order has been dispatched"
 }'
 ```
+
+<br/>
+
+### Leftover
+* Exception handling and system failures are not implemented for simplicity.
+* Extensive tests cases are not written as no business logic in code. Focus was more on design side.
+* Process multiple notifications in single request is not implemented for simplicity.
 
 <br/>
 

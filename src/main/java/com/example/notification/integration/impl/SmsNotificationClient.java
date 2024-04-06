@@ -15,7 +15,7 @@ public class SmsNotificationClient implements NotificationClient {
     @Override
     public ChannelNotificationResponse notify(ChannelNotificationRequest request) {
 
-        //In real life application, this method will integrate with SMTP server and send notification to SMS
+        //In real world application, this method will integrate with SMTP server and send notification to SMS
         log.info("SMS notification sent for Order ID : {} and notification ID : {}", request.getOrderId(), request.getNotificationId());
 
         return ChannelNotificationResponse.builder()
@@ -23,9 +23,14 @@ public class SmsNotificationClient implements NotificationClient {
                 .orderId(request.getOrderId())
                 .status("OK")
                 .build();
+
+        //TODO : Exception handling is not done. In real world, log exception and retry sending notification.
+        // Retry can be done by using resiliency4j library
+        // If retry failed say for three attempts, save notification in persistent store like DB so that those notification would be processed manually if required
     }
 
     public Boolean isChannelEnabled() {
         return isChannelEnabled;
     }
 }
+

@@ -23,9 +23,9 @@ public class NotificationController {
 
     @PostMapping("/notification")
     public ResponseEntity<ServiceNotificationResponse> sendNotification(@RequestBody ServiceNotificationRequest request) {
-        log.info("Received notification request for order Id : {}", request.getOrderId());
+        log.info("Received notification request : {}", request);
         ServiceNotificationResponse serviceNotificationResponse = notificationService.processNotification(request);
-        log.info("Notification request processed for order Id : {}", request.getOrderId());
+        log.info("Sent Notification response : {}", serviceNotificationResponse);
         return new ResponseEntity<>(serviceNotificationResponse, HttpStatus.OK);
     }
 }

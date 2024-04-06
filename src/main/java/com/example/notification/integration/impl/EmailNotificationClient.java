@@ -1,13 +1,10 @@
 package com.example.notification.integration.impl;
 
 import com.example.notification.config.ConfigProperties;
-import com.example.notification.controller.NotificationController;
 import com.example.notification.integration.NotificationClient;
 import com.example.notification.model.integration.ChannelNotificationRequest;
 import com.example.notification.model.integration.ChannelNotificationResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

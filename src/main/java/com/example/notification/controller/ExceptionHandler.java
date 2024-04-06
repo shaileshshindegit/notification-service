@@ -16,7 +16,7 @@ public class ExceptionHandler {
                 ex.getMessage(),
                 "Technical Exception : Unable to send notification");
 
-        return new ResponseEntity<ErrorResponse>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     //TODO : Need to handle other exceptions as well like NOT_FOUND, custom exception etc

@@ -78,8 +78,11 @@ curl --location 'http://localhost:8080/api/v1/notification' \
 
 ### Leftover
 * Exception handling and partial failures are not implemented for simplicity.
-* Extensive tests cases are not written as no business logic in code. Focus was more on design side.
+* Validation, data sanitization and data masking not implemented.
+* Extensive test cases are not written as no business logic in code. Focus was more on design side.
 * Process multiple notifications in single request is not implemented for simplicity.
+* Configuration from YAML file is not used. Configuration needs to be externalise with spring-cloud-config
+* Spring profiles are not used. In real world application, we will have different downstream URLs for each environment like test, uat, prod.
 
 <br/>
 

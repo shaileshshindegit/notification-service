@@ -4,8 +4,6 @@ import com.example.notification.integration.NotificationClient;
 import com.example.notification.model.integration.ChannelNotificationRequest;
 import com.example.notification.model.integration.ChannelNotificationResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
